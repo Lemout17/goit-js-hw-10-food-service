@@ -7,13 +7,11 @@ const Theme = {
 
 function onSwitcherChange() {
     if (switcher.checked) {
-        bodyRef.classList.add('dark-theme');
-        bodyRef.classList.remove('light-theme');
+        changeClass('dark-theme', 'light-theme');
         localStorage.setItem('theme', Theme.DARK)
         
     } else {
-        bodyRef.classList.remove('dark-theme');
-        bodyRef.classList.add('light-theme');
+        changeClass('light-theme', 'dark-theme');
         localStorage.setItem('theme', Theme.LIGHT)
         
     }
@@ -25,6 +23,11 @@ function savedTheme() {
         switcher.checked = 'true';
         onSwitcherChange();
     }
+}
+
+function changeClass(add, remove) {
+    bodyRef.classList.add(add);
+    bodyRef.classList.remove(remove);
 }
 
 switcher.addEventListener('change', onSwitcherChange);
